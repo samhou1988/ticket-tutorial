@@ -3,10 +3,17 @@ import PriorityDisplay from "@/components/priority-display";
 import DeleteBlock from "@/components/delete-block";
 import ProgressDisplay from "@/components/progress-display";
 import Link from "next/link";
+import { Ticket } from "@/lib/types";
 
-const TicketCard = ({ ticket }) => {
-  function formatTimestamp(timestamp) {
-    const options = {
+const TicketCard = ({ ticket }: {
+  ticket: Ticket & {
+    _id: string;
+    createdAt: string;
+  }
+}) => {
+
+  function formatTimestamp(timestamp: string | number | Date) {
+    const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
       day: "2-digit",
