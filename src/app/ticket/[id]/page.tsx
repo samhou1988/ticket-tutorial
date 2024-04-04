@@ -1,7 +1,7 @@
 import TicketForm from "@/components/ticket-form";
 import { Ticket } from "@/lib/types";
 
-const getTicketById = async (id) => {
+const getTicketById = async (id: string) => {
   try {
     const res = await fetch(`http://localhost:3000/api/ticket/${id}`, {
       cache: "no-store",
@@ -18,7 +18,11 @@ const getTicketById = async (id) => {
 };
 
 let updateTicketData = {} as any;
-const TicketPage = async ({ params }) => {
+const TicketPage = async ({ params }: {
+  params: {
+    id: string;
+  };
+}) => {
   const EDITMODE = params.id === "new" ? false : true;
 
   if (EDITMODE) {
